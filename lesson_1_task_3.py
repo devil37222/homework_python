@@ -1,5 +1,3 @@
-first_name = input("Dmitry")
-
-last_name = input("Larionov")
-
-print(f"Вас зовут: {last_name} {first_name}")
+first_name = input()
+last_name = input()
+print(f"Вас зовут: {first_name} {last_name}")
