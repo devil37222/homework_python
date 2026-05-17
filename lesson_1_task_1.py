@@ -1,2 +1,2 @@
-my_name = int(input("Dmitry"))
+my_name = "Dmitry"
 print(my_name)
