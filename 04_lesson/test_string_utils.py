@@ -32,9 +32,7 @@ def test_capitalize_negative(input_str, expected):
 
 @pytest.mark.positive
 @pytest.mark.parametrize("input_str, expected", [
-    ("Test"),
-    ("123"),
-    ("04 April 2026"),
+    ("   Test"),
     ])
 
 def test_trim_positive(input_str, expected):
