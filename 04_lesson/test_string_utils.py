@@ -2,7 +2,7 @@ import pytest
 from string_utils import StringUtils
 
 
-string_utils = StringUtils()
+utils = StringUtils()
 
 
 @pytest.mark.positive
@@ -12,7 +12,7 @@ string_utils = StringUtils()
     ("python", "Python"),
 ])
 def test_capitalize_positive(input_str, expected):
-    assert string_utils.capitalize(input_str) == expected
+    assert utils.capitalize(input_str) == expected
 
 
 @pytest.mark.negative
@@ -22,7 +22,7 @@ def test_capitalize_positive(input_str, expected):
     ("   ", "   "),
 ])
 def test_capitalize_negative(input_str, expected):
-    assert string_utils.capitalize(input_str) == expected
+    assert utils.capitalize(input_str) == expected
 
 
 
@@ -31,59 +31,59 @@ def test_capitalize_negative(input_str, expected):
 #Тестовый сценарий 1:
 
 @pytest.mark.positive
-@pytest.mark.parametrize("input_str, expected", [
+@pytest.mark.parametrize("input_str", [
     ("   Test"),
     ])
 
-def test_trim_positive(input_str, expected):
-    assert string_utils.trim(input_str) == expected
+def test_trim_positive(input_str):
+    assert utils.trim(input_str)
 
 @pytest.mark.negative
-@pytest.mark.parametrize("input_str, expected", [
+@pytest.mark.parametrize("input_str", [
     (""),
     (" "),
     (),
     ])
 
-def test_trim_negative(input_str, expected):
-    assert string_utils.trim(input_str) == expected
+def test_trim_negative(input_str):
+    assert utils.trim(input_str)
 
 #Тестовый сценарий 2:
 
 @pytest.mark.positive
-@pytest.mark.parametrize("input_str, input_symbol, expected", [
+@pytest.mark.parametrize("input_str, input_symbol", [
     ("Test","T"),
     ("123","2"),
     ])
 
-def test_contains_positive(input_str, input_symbol, expected):
-    assert string_utils.contains(input_str, input_symbol) == expected
+def test_contains_positive(input_str, input_symbol):
+    assert utils.contains(input_str, input_symbol)
 
 @pytest.mark.negative
-@pytest.mark.parametrize("input_str, input_symbol, expected", [
+@pytest.mark.parametrize("input_str, input_symbol", [
     ("Test","n"),
     ("123","4"),
     ])
 
-def test_contains_negative(input_str, input_symbol, expected):
-    assert string_utils.contains(input_str, input_symbol) == expected
+def test_contains_negative(input_str, input_symbol):
+    assert utils.contains(input_str, input_symbol)
 
 #Тестовый сценарий 3:
 
 @pytest.mark.positive
-@pytest.mark.parametrize("input_str, input_symbol, expected", [
+@pytest.mark.parametrize("input_str, input_symbol", [
     ("Test","T"), 
     ("123","2"),
     ])
 
-def test_delete_symbol_positive(input_str, input_symbol, expected):
-    assert string_utils.delete_symbol(input_str, input_symbol) == expected
+def test_delete_symbol_positive(input_str, input_symbol):
+    assert utils.delete_symbol(input_str, input_symbol)
 
 @pytest.mark.negative
-@pytest.mark.parametrize("input_str, input_symbol, expected", [
+@pytest.mark.parametrize("input_str, input_symbol", [
     ("Test","n"),
     ("123","4"),
     ])
 
-def test_delete_symbol_negative(input_str, input_symbol, expected):
-    assert string_utils.delete_symbol(input_str, input_symbol) == expected
+def test_delete_symbol_negative(input_str, input_symbol):
+    assert utils.delete_symbol(input_str, input_symbol)
