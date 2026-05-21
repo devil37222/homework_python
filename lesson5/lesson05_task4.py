@@ -12,7 +12,6 @@ driver.find_element(By.ID, 'password').send_keys("SuperSecretPassword!")
 
 driver.find_element(By.CSS_SELECTOR, 'i').click()
 
-message = driver.find_element(By.XPATH, 'div#flash.flash.success')
-print(message.text)
+flash_message = driver.find_element(By.CSS_SELECTOR, '.flash.success')
+print(flash_message.text)
 
-driver.quit()
