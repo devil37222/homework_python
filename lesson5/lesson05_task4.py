@@ -15,3 +15,4 @@ driver.find_element(By.CSS_SELECTOR, 'i').click()
 flash_message = driver.find_element(By.CSS_SELECTOR, '.flash.success')
 print(flash_message.text)
 
+driver.quit()
