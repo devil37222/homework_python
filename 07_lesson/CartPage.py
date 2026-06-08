@@ -3,6 +3,7 @@ from selenium.webdriver.common.by import By
 
 class CartPage:
     def __init__(self, driver):
+        self.driver = driver
         self.first_name = (By.CSS_SELECTOR, '#first-name')
         self.last_name = (By.CSS_SELECTOR, '#last-name')
         self.postal = (By.CSS_SELECTOR, '#postal-code')
