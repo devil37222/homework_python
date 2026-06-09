@@ -16,7 +16,7 @@ class CalculatorPage:
     def delay(self):
         delay_element = self.driver.find_element(*self.page)
         delay_element.clear()
-        delay_element.send_keys("")
+        delay_element.send_keys("45")
 
     def button_number(self):
         button_element = self.driver.find_element(*self.button[0]).click()
