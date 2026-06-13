@@ -6,20 +6,12 @@ api = ProjectsAPI(None, "https://ru.yougile.com")
 
 
 # Проверка получения списка ключей
-def test_get_keysPositiv():
+def test_get_keys():
     login = MY_API_LOGIN
     password = MY_API_PASSWORD
     resp = api.get_keys_list(login, password)
     resp.json()[0]['key']
     assert resp.status_code == 200
-
-
-def test_get_keysNegative():
-    login = MY_API_LOGIN
-    password = MY_API_PASSWORD
-    resp = api.get_keys_list(login, password)
-    resp.json()[0]['key']
-    assert resp.status_code == 201
 
 
 # Проверка создания проекта
@@ -39,12 +31,9 @@ def test_create_projectNegative():
     login = MY_API_LOGIN
     password = MY_API_PASSWORD
     api.get_keys_list(login, password).json()[0]['key']
-    title = "Старый проект"
-    result = api.create_project(title)
-    new_id = result.json()['id']
-    new_project = api.create_project('new_id')
-    assert result.status_code == 404
-    assert new_project.json()['id'] != new_id
+    result = api.create_project(title="")
+    assert result.status_code == 400
+    assert 'error' in result.json()
 
 
 # Провека изменения проекта
@@ -52,7 +41,7 @@ def test_update_projectPositiv():
     login = MY_API_LOGIN
     password = MY_API_PASSWORD
     api.get_keys_list(login, password).json()[0]['key']
-    print(api.get_keys_list(login, password).json()[0]['key']) 
+    print(api.get_keys_list(login, password).json()[0]['key'])
     project_id = api.create_project(title="Старый проект").json()['id']
     new_title = "Новый проект"
     result = api.update_project(project_id, new_title)
@@ -64,9 +53,9 @@ def test_update_projectNegative():
     password = MY_API_PASSWORD
     api.get_keys_list(login, password).json()[0]['key']
     project_id = api.create_project(title="Старый проект").json()['id']
-    new_title = "Новый проект"
-    result = api.update_project(project_id, new_title)
-    assert result.status_code != 200
+    result = api.update_project(project_id, new_title="")
+    assert result.status_code == 400
+    assert 'error' in result.json()
 
 
 # Проверка получения проекта по ID
@@ -83,6 +72,7 @@ def test_get_project_idNegative():
     login = MY_API_LOGIN
     password = MY_API_PASSWORD
     api.get_keys_list(login, password).json()[0]['key']
-    project_id = api.create_project(title="Старый проект").json()['id']
+    project_id = "non_existing_id"
     resp = api.get_project_id(project_id)
-    assert resp.status_code != 200
+    assert resp.status_code == 404
+    assert 'error' in resp.json()

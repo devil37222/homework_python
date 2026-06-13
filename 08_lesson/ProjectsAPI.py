@@ -12,7 +12,7 @@ class ProjectsAPI:
     def get_keys_list(self, login, password):
         body = {
             "login": login,
-             "password": password
+            "password": password
             }
         resp = requests.post(self.url + '/api-v2/auth/keys/get', json=body)
         return resp
