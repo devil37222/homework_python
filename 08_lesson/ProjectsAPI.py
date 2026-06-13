@@ -1,4 +1,5 @@
 import requests
+from config import MY_API_LOGIN, MY_API_PASSWORD
 
 
 class ProjectsAPI:
@@ -10,16 +11,16 @@ class ProjectsAPI:
     # Получение списка ключей
     def get_keys_list(self, login, password):
         body = {
-            "login": "login",
-            "password": "pass"
-        }
+            "login": login,
+             "password": password
+            }
         resp = requests.post(self.url + '/api-v2/auth/keys/get', json=body)
         return resp
 
     # Создание проекта
     def create_project(self, title):
-        login = "d.larionow2013@yandex.ru"
-        password = "Dima27811"
+        login = MY_API_LOGIN
+        password = MY_API_PASSWORD
         my_token = self.get_keys_list(login, password).json()[0]['key']
         my_headers = {
             "Content-Type": "application/json",
@@ -34,7 +35,9 @@ class ProjectsAPI:
 
     # Изменение проекта
     def update_project(self, id, new_title):
-        my_token = self.get_keys_list('login', 'password').json()[0]['key']
+        login = MY_API_LOGIN
+        password = MY_API_PASSWORD
+        my_token = self.get_keys_list(login, password).json()[0]['key']
         my_headers = {
             "Content-Type": "application/json",
             "Authorization": "Bearer " + my_token
@@ -48,7 +51,9 @@ class ProjectsAPI:
 
     # Получение проекта по ID
     def get_project_id(self, id):
-        my_token = self.get_keys_list('login', 'password').json()[0]['key']
+        login = MY_API_LOGIN
+        password = MY_API_PASSWORD
+        my_token = self.get_keys_list(login, password).json()[0]['key']
         my_headers = {
             "Content-Type": "application/json",
             "Authorization": "Bearer " + my_token
